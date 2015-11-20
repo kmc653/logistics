@@ -1,0 +1,15 @@
+<%= form_for @truck do |f| %>
+  <%= f.label :id, "車牌" %>
+  <%= f.text_field :truck_id %><br />
+
+  <%= f.label :brand, "廠牌" %>
+  <%= f.select :truck_brand, [["FUSO"], ["SCANIA"], ["VOLVO"], ["DAF"], ["BENZ"]] %><br />
+
+  <%= f.label :type, "型式" %>
+  <%= f.select :truck_type, [["全拖"], ["半拖"]] %><br />
+
+  <%= f.label :date_of_buying, "購買日期" %>
+  <%= f.date_field :buy_date %><br />  
+
+  <%= f.submit %>
+<% end %>

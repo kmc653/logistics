@@ -1,0 +1,39 @@
+<h3>
+  <!-- 車牌:
+  <span> -->
+  <%= @trailer.trailer_id%>
+  <!-- </span> -->
+</h3>
+
+<h5>
+  品牌:
+  <span>
+    <%= @trailer.trailer_brand%>
+  </span>
+</h5>
+
+<h5>
+  車型:
+  <span>
+    <%= @trailer.trailer_type%>
+  </span>
+</h5>
+
+<h5>
+  購買日期:
+  <span>
+    <%= @trailer.buy_date%>
+  </span>
+</h5>
+
+<% if has_using_truck(@trailer) %> 
+  <h5>
+    使用車輛:
+    <span>
+      <%= link_to "#{@trailer.truck.truck_id}", truck_path(@trailer.truck) %>
+    </span>
+  </h5>
+<% end %>
+
+<%= link_to "編輯", edit_trailer_path(@trailer) %> | 
+<%= link_to "所有板台", trailers_path %>

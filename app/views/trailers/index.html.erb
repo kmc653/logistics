@@ -1,0 +1,9 @@
+<h3>所有板台</h3>
+
+<% @trailers.each do |trailer| %>
+  <ul>
+    <li><%= link_to "#{trailer.trailer_id}", trailer_path(trailer) %></li>
+  </ul>
+<% end %>
+
+<%= link_to "新增板台", new_trailer_path %>

@@ -1,0 +1,9 @@
+<h3>所有車輛</h3>
+
+<% @trucks.each do |truck| %>
+  <ul>
+    <li><%= link_to "#{truck.truck_id}", truck_path(truck) %></li>
+  </ul>
+<% end %>
+
+<%= link_to "新增車輛", new_truck_path %>
