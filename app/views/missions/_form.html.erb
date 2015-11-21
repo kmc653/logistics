@@ -1,0 +1,18 @@
+<%= form_for @mission do |f| %>
+  <%= f.label :deliver_date, "日期" %>
+  <%= f.datetime_select :deliver_date %><br />
+
+  <%= f.label :client_1, "目的地_1" %>
+  <%= f.select :client_1, [["允強-溪州"], ["允強-斗六"], ["彰源"]], include_blank: " "%><br />
+
+  <%= f.label :client_2, "目的地_2" %>
+  <%= f.select :client_2, [["允強-溪州"], ["允強-斗六"], ["彰源"]], include_blank: " " %><br />
+
+  <%= f.label :number_of_item, "數量" %>
+  <%= f.select :number_of_item, [1, 2] %><br />
+
+  <%= f.label :truck_id, "車牌" %>
+  <%= f.select :truck_id, options_from_collection_for_select(@trucks.all, :id, :truck_id), include_blank: " " %><br />  
+
+  <%= f.submit %>
+<% end %>

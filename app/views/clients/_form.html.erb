@@ -1,0 +1,9 @@
+<%= form_for @client do |f| %>
+  <%= f.label :name, "客戶名稱" %>
+  <%= f.text_field :name %><br />
+
+  <%= f.label :address, "地址" %>
+  <%= f.text_field :address %><br />
+
+  <%= f.submit %>
+<% end %>

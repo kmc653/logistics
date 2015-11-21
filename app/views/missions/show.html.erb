@@ -1,0 +1,37 @@
+<h5>
+  日期:
+  <span>
+    <%= @mission.deliver_date %>
+  </span>
+</h5>
+
+<h5>
+  目的地_1:
+  <span>
+    <%= @mission.client_1 %>
+  </span>
+</h5>
+<% if @mission.client_2.present? %>
+  <h5>
+    目的地_2:
+    <span>
+      <%= @mission.client_2 %>
+    </span>
+  </h5>
+<% end %>
+<h5>
+  數量:
+  <span>
+    <%= @mission.number_of_item %>
+  </span>
+</h5>
+
+<h5>
+  運送車輛:
+  <span>
+    <%= @mission.truck.truck_id %>
+  </span>
+</h5>
+
+<%= link_to "編輯", edit_mission_path(@mission) %> | 
+<%= link_to "所有任務", missions_path %>

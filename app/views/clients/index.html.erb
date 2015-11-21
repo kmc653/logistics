@@ -1,0 +1,54 @@
+<section class="user container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <article>
+        <header>
+          <div>
+            <h3>所有目的地</h3>
+            <p><%= link_to "新增目的地", new_client_path %></p>
+          </div>
+        </header>
+        <body>
+          <table class="table">
+            <% if @clients.present? %>
+              <thead>
+                <tr>
+                  <th width="5%">#</th>
+                  <th width="20%">目的地</th>
+                  <th width="20%">地址</th>
+                  <th width="5%"></th>
+                  <th width="5%"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @clients.each_with_index do |client, index| %>
+                  <tr>
+                    <td>
+                      <%= index + 1 %>
+                    </td>
+                    <td>
+                      <%= client.name %>
+                    </td>
+                    <td>
+                      <%= client.address %>
+                    </td>
+                    <td>
+                      <%= link_to edit_client_path(client) do %>
+                        <i class="glyphicon glyphicon-edit"></i>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to client, method: :delete, date: { confirm: "確定要刪除？" } do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            <% end %>
+          </table>
+        </body>
+      </article>
+    </div>
+  </div>
+</section>

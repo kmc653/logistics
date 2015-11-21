@@ -7,20 +7,52 @@
         </header>
         <table class="table">
           <% if @missions.present? %>
-            <% @missions.each do |mission| %>
-              <thead>
+            <thead>
+              <tr>
+                <th width="5%" > # </th>
+                <th width="20%" > 日期</th>
+                <th width="15%" > 目的地_1 </th>
+                <th width="15%" > 目的地_1 </th>
+                <th width="10%" > 數量</th>
+                <th width="15%" > 車牌</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @missions.each_with_index do |mission, index| %>
                 <tr>
-                  <th>(width="15%") #{mission.deliver_date}</th>
-                  <th>(width="5%") # </th>
-                  <th>(width="15%") 目的地_1 </th>
-                  <th>(width="15%") 目的地_1 </th>
-                  <th>(width="15%") 數量</th>
-                  <th>(width="35%") 車牌</th>
+                  <td>
+                    <%= index + 1 %>
+                  </td>
+                  <td>
+                    <%= mission.deliver_date %>
+                  </td>
+                  <td>
+                    <%= mission.client_1 %>
+                  </td>
+                  <% if mission.client_2.present? %>
+                    <td>
+                      <%= mission.client_2 %>
+                    </td>
+                  <% else %>
+                    <td></td>
+                  <% end %>
+                  <td>
+                    <%= mission.number_of_item %>
+                  </td>
+                  <td>
+                    <%= mission.truck.truck_id %>
+                  </td>
+                  <td>
+                    <%= link_to edit_mission_path(mission) do %>
+                      <i class="glyphicon glyphicon-edit"></i>
+                    <% end %>
+                  </td>
                 </tr>
-              </thead>
-            <% end %>
+              <% end %>
+            </tbody>
           <% end %>
         </table>
+        <%= link_to "新增任務", new_mission_path %>
       </article>
     </div>
   </div>
