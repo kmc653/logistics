@@ -1,5 +1,5 @@
 class MissionsController < ApplicationController
-  before_action :set_trucks
+  before_action :set_trucks, :set_clients
 
   def index
     @missions = Mission.all
@@ -42,10 +42,14 @@ class MissionsController < ApplicationController
   private
 
   def mission_params
-    params.require(:mission).permit(:deliver_date, :client_1, :client_2, :truck_id, :number_of_item, :two_clients)
+    params.require(:mission).permit(:client_1, :client_2, :truck_id, :number_of_item, :two_clients, :loading_position, :m_date, :m_time)
   end
 
   def set_trucks
     @trucks = Truck.all
+  end
+
+  def set_clients
+    @clients = Client.all
   end
 end

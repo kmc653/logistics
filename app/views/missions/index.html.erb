@@ -4,17 +4,20 @@
       <article>
         <header>
           <h3>所有任務</h3>
+          <p><%= link_to "新增任務", new_mission_path %></p>
         </header>
         <table class="table">
           <% if @missions.present? %>
             <thead>
               <tr>
                 <th width="5%" > # </th>
-                <th width="20%" > 日期</th>
+                <th width="10%" > 日期</th>
+                <th width="10%" > 時間</th>
+                <th width="15%" > 車牌</th>
+                <th width="15%" > 裝貨地點 </th>
                 <th width="15%" > 目的地_1 </th>
                 <th width="15%" > 目的地_1 </th>
                 <th width="10%" > 數量</th>
-                <th width="15%" > 車牌</th>
               </tr>
             </thead>
             <tbody>
@@ -24,7 +27,16 @@
                     <%= index + 1 %>
                   </td>
                   <td>
-                    <%= mission.deliver_date %>
+                    <%= mission.m_date %>
+                  </td>
+                  <td>
+                    <%= mission.m_time %>
+                  </td>
+                  <td>
+                    <%= mission.truck.truck_id %>
+                  </td>
+                  <td>
+                    <%= mission.loading_position %>
                   </td>
                   <td>
                     <%= mission.client_1 %>
@@ -40,9 +52,6 @@
                     <%= mission.number_of_item %>
                   </td>
                   <td>
-                    <%= mission.truck.truck_id %>
-                  </td>
-                  <td>
                     <%= link_to edit_mission_path(mission) do %>
                       <i class="glyphicon glyphicon-edit"></i>
                     <% end %>
@@ -52,7 +61,6 @@
             </tbody>
           <% end %>
         </table>
-        <%= link_to "新增任務", new_mission_path %>
       </article>
     </div>
   </div>

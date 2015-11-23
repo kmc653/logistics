@@ -1,9 +1,61 @@
-<h3>所有車輛</h3>
-
-<% @trucks.each do |truck| %>
-  <ul>
-    <li><%= link_to "#{truck.truck_id}", truck_path(truck) %></li>
-  </ul>
-<% end %>
-
-<%= link_to "新增車輛", new_truck_path %>
+<section class="user container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <article>
+        <header>
+          <h3>所有拖車</h3>
+          <p><%= link_to "新增拖車", new_truck_path %></p>
+        </header>
+        <table class="table">
+          <% if @trucks.present? %>
+            <thead>
+              <tr>
+                <th width="5%" > # </th>
+                <th width="15%" > 車牌</th>
+                <th width="15%" > 品牌</th>
+                <th width="15%" > 類型</th>
+                <th width="15%" > 購買日期 </th>
+                <th width="15%" > 使用板車 </th>
+                <th width="10%" ></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @trucks.each_with_index do |truck, index| %>
+                <tr>
+                  <td>
+                    <%= index + 1 %>
+                  </td>
+                  <td>
+                    <%= link_to "#{truck.truck_id}", truck_path(truck) %>
+                  </td>
+                  <td>
+                    <%= truck.truck_brand %>
+                  </td>
+                  <td>
+                    <%= truck.truck_type %>
+                  </td>
+                  <td>
+                    <%= truck.buy_date %>
+                  </td>
+                  <td>
+                    <% if truck.trailers.present? %>
+                      <% truck.trailers.each do |trailer| %>
+                        <%= link_to "#{trailer.trailer_id}", trailer_path(trailer) %>
+                      <% end %>
+                    <% end %>
+                    
+                  </td>
+                  <td>
+                    <%= link_to edit_truck_path(truck) do %>
+                      <i class="glyphicon glyphicon-edit"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          <% end %>
+        </table>
+      </article>
+    </div>
+  </div>
+</section>
