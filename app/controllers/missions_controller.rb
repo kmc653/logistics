@@ -42,7 +42,7 @@ class MissionsController < ApplicationController
   private
 
   def mission_params
-    params.require(:mission).permit(:client_1, :client_2, :truck_id, :number_of_item, :two_clients, :loading_position, :m_date, :m_time)
+    params.require(:mission).permit(:client_1, :client_2, :truck_id, :number_of_item, :two_clients, :loading_position, :m_date)
   end
 
   def set_trucks

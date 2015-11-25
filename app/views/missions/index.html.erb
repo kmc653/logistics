@@ -8,57 +8,53 @@
         </header>
         <table class="table">
           <% if @missions.present? %>
-            <thead>
-              <tr>
-                <th width="5%" > # </th>
-                <th width="10%" > 日期</th>
-                <th width="10%" > 時間</th>
-                <th width="15%" > 車牌</th>
-                <th width="15%" > 裝貨地點 </th>
-                <th width="15%" > 目的地_1 </th>
-                <th width="15%" > 目的地_1 </th>
-                <th width="10%" > 數量</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @missions.each_with_index do |mission, index| %>
+            <% collect_all_missions_date(@missions).each do |date| %>
+              <thead>
                 <tr>
-                  <td>
-                    <%= index + 1 %>
-                  </td>
-                  <td>
-                    <%= mission.m_date %>
-                  </td>
-                  <td>
-                    <%= mission.m_time %>
-                  </td>
-                  <td>
-                    <%= mission.truck.truck_id %>
-                  </td>
-                  <td>
-                    <%= mission.loading_position %>
-                  </td>
-                  <td>
-                    <%= mission.client_1 %>
-                  </td>
-                  <% if mission.client_2.present? %>
-                    <td>
-                      <%= mission.client_2 %>
-                    </td>
-                  <% else %>
-                    <td></td>
-                  <% end %>
-                  <td>
-                    <%= mission.number_of_item %>
-                  </td>
-                  <td>
-                    <%= link_to edit_mission_path(mission) do %>
-                      <i class="glyphicon glyphicon-edit"></i>
-                    <% end %>
-                  </td>
+                  <th width="15%" ><%= date %></th>
+                  <th width="5%" > # </th>
+                  <th width="15%" > 車牌 </th>
+                  <th width="15%" > 裝貨地點 </th>
+                  <th width="15%" > 目的地_1 </th>
+                  <th width="15%" > 目的地_2 </th>
+                  <th width="10%" > 數量 </th>
                 </tr>
-              <% end %>
-            </tbody>
+              </thead>
+              <tbody>
+                <% find_all_missions_with_specific_date(@missions, date).each_with_index do |mission, index| %>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <%= index + 1 %>
+                    </td>
+                    <td>
+                      <%= mission.truck.truck_id %>
+                    </td>
+                    <td>
+                      <%= mission.loading_position %>
+                    </td>
+                    <td>
+                      <%= mission.client_1 %>
+                    </td>
+                    <% if mission.client_2.present? %>
+                      <td>
+                        <%= mission.client_2 %>
+                      </td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <td>
+                      <%= mission.number_of_item %>
+                    </td>
+                    <td>
+                      <%= link_to edit_mission_path(mission) do %>
+                        <i class="glyphicon glyphicon-edit"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            <% end %>
           <% end %>
         </table>
       </article>
