@@ -1,0 +1,9 @@
+<%= form_tag({ controller: "missions", action: "search"}, method: "get") do %>
+  <%= label_tag(:date, "日期:") %>
+  <%= date_select(:mission, :date, options = { use_month_numbers: true }) %>
+  <%= label_tag(:id, "車牌:") %>
+  <%= select_tag(:id, options_for_select(truck_id_aray), include_blank: true) %>
+  <%= button_tag(type: 'submit', class: "btn btn-default") do %>
+    <span class="glyphicon glyphicon-search"></span>
+  <% end %>
+<% end %>

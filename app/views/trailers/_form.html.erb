@@ -12,7 +12,7 @@
   <%= f.date_field :buy_date %><br />  
 
   <%= f.label :truck_id, "使用車輛" %>
-  <%= f.select :truck_id, options_from_collection_for_select(@trucks, 'id', 'truck_id'), include_blank: " " %><br />
+  <%= f.select :truck_id, options_from_collection_for_select(@trucks, 'id', 'truck_id', @trailer.truck.id), include_blank: " " %><br />
 
   <%= f.submit %>
 <% end %>

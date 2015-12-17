@@ -31,4 +31,8 @@ module ApplicationHelper
     end
     mission_array
   end
+
+  def truck_id_aray
+    trucks_array = Truck.all.map { |truck| [truck.truck_id, truck.id] }
+  end
 end

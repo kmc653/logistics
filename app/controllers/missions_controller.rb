@@ -2,7 +2,7 @@ class MissionsController < ApplicationController
   before_action :set_trucks, :set_clients
 
   def index
-    @missions = Mission.all
+    @missions = Mission.where(m_date: Time.now.strftime("%Y-%m-%d")).order(created_at: :desc)
   end
 
   def new
@@ -36,6 +36,34 @@ class MissionsController < ApplicationController
     else
       flash[:error] = "輸入資料有誤，請重新輸入。"
       render :edit
+    end
+  end
+
+  def search
+    if params[:mission].present?
+      @search_date = "" << params[:mission]["date(1i)"] << "-" << params[:mission]["date(2i)"] << "-" << params[:mission]["date(3i)"]
+      search_id = params[:id].to_i
+
+      if search_id == 0
+        @missions = Mission.where(m_date: @search_date)
+      else
+        @missions = Mission.where(m_date: @search_date, truck_id: search_id)
+      end 
+
+      # if @missions.empty?
+      #   flash[:error] = "選擇日期或車牌無任何任務。"
+      # else
+      #   flash[:success] = "搜尋成功！"
+      # end
+      respond_to do |format|
+        format.html do
+          if @missions.empty?
+            flash[:notice] = "選擇日期或車牌無任何任務。"
+          else
+            flash[:notice] = "搜尋成功！"
+          end
+        end
+      end
     end
   end
 

@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   resources :trucks
   resources :trailers
-  resources :missions
   resources :clients, except: [:show]
+
+  resources :missions do 
+    collection do
+      get :search, to: "missions#search"
+    end
+  end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

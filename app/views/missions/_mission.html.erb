@@ -1,0 +1,29 @@
+<tbody>
+  <tr>
+    <td></td>
+    <td>
+      <%= mission.truck.truck_id %>
+    </td>
+    <td>
+      <%= mission.loading_position %>
+    </td>
+    <td>
+      <%= mission.client_1 %>
+    </td>
+    <% if mission.client_2.present? %>
+      <td>
+        <%= mission.client_2 %>
+      </td>
+    <% else %>
+      <td></td>
+    <% end %>
+    <td>
+      <%= mission.number_of_item %>
+    </td>
+    <td>
+      <%= link_to edit_mission_path(mission) do %>
+        <i class="glyphicon glyphicon-edit"></i>
+      <% end %>
+    </td>
+  </tr>
+</tbody>
