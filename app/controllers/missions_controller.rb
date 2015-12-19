@@ -45,9 +45,9 @@ class MissionsController < ApplicationController
       search_id = params[:id].to_i
 
       if search_id == 0
-        @missions = Mission.where(m_date: @search_date)
+        @missions = Mission.where(m_date: @search_date).order(created_at: :desc)
       else
-        @missions = Mission.where(m_date: @search_date, truck_id: search_id)
+        @missions = Mission.where(m_date: @search_date, truck_id: search_id).order(created_at: :desc)
       end 
 
       # if @missions.empty?

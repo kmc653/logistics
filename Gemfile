@@ -14,3 +14,4 @@ gem 'spring',        group: :development
 gem 'pg'
 gem 'bootstrap-sass'
 gem 'pry'
+gem 'bcrypt-ruby'

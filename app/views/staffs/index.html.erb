@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <article>
+        <header>
+          <h3>人員</h3>
+          <p><%= link_to "新增人員", new_staff_path %></p>
+        </header>
+        <section>
+          <% if @staffs.present? %>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th width="10%" > # </th>
+                  <th width="20%" > 姓名 </th>
+                  <th width="30%" > 駕駛車輛 </th>
+                  <th width="10%" > Admin </th>
+                </tr>
+              </thead>
+              <% @staffs.each_with_index do |staff, index| %>
+                <tbody>
+                  <tr>
+                    <td>
+                      <%= index + 1 %>
+                    </td>
+                    <%= render staff %>
+                  </tr>
+                </tbody>
+              <% end %>
+            </table>
+          <% end %>
+        </section>
+      </article>
+    </div>
+  </div>
+</div>

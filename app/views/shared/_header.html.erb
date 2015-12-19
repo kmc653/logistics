@@ -1,6 +1,26 @@
 <div class="container">
-  <%= link_to '拖車', trucks_path %> |
-  <%= link_to '板車', trailers_path %> |
-  <%= link_to '任務', missions_path %> |
-  <%= link_to '目的地', clients_path %>
+  <% if logged_in? %>
+    <%= link_to '拖車', trucks_path %> |
+    <%= link_to '板車', trailers_path %> |
+    <%= link_to '任務', missions_path %> |
+    <%= link_to '目的地', clients_path %> |
+    <%= link_to '人員', staffs_path %>
+  
+
+  
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+          <span aria-hidden="true" class="glyphicon glyphicon-user"></span>
+          <%= current_user.name %>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <%= link_to "Logout 登出", logout_path %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
 </div>

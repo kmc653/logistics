@@ -1,0 +1,20 @@
+<td>
+  <%= staff.name %>
+</td>
+<td>
+  <% if staff.truck.present? %>
+    <%= staff.truck.truck_id %>
+  <% else %>
+    內勤
+  <% end %>
+</td>
+<td>
+  <% if staff.admin == true %>
+    <i class="glyphicon glyphicon-ok"></i>
+  <% end %>
+</td>
+<td>
+  <%= link_to edit_staff_path(staff) do %>
+    <i class="glyphicon glyphicon-edit"></i>
+  <% end %>
+</td>

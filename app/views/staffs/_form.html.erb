@@ -1,0 +1,15 @@
+<%= form_for @staff do |f| %>
+  <%= f.label :name, "姓名" %>
+  <%= f.text_field :name %><br />
+
+  <%= f.label :password, "密碼" %>
+  <%= f.password_field :password %><br />
+  
+  <%= f.label :truck_id, "駕駛車輛" %>
+  <%= f.select :truck_id, options_from_collection_for_select(@trucks, :id, :truck_id, @staff[:truck_id]), include_blank: " " %><br />
+
+  <%= f.label :admin, "Admin" %>
+  <%= f.check_box :admin %><br />
+
+  <%= f.submit %>
+<% end %>
