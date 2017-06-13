@@ -3,5 +3,5 @@ class Truck < ActiveRecord::Base
 
   has_many :trailers
   has_many :missions
-  has_many :maintenances
+  has_many :maintenances, foreign_key: "vehicle_id"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613092923) do
+ActiveRecord::Schema.define(version: 20170613103016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,20 @@ ActiveRecord::Schema.define(version: 20170613092923) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "maintain_units", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "maintenances", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "vehicle_id"
     t.datetime "start_at"
     t.datetime "end_at"
     t.integer  "mileage"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "maintain_unit_id"
     t.index ["vehicle_id"], name: "index_maintenances_on_vehicle_id", using: :btree
   end
 

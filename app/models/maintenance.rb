@@ -3,4 +3,5 @@ class Maintenance < ActiveRecord::Base
 
   belongs_to :truck, class_name: "Truck", foreign_key: "vehicle_id"
   belongs_to :trailer, class_name: "Trailer", foreign_key: "vehicle_id"
+  belongs_to :maintain_unit
 end
