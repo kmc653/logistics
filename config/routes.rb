@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :trailers
   resources :clients, except: [:show]
   resources :staffs
-  resources :missions do 
+  resources :missions do
     collection do
       get :search, to: "missions#search"
     end

@@ -3,4 +3,5 @@ class Truck < ActiveRecord::Base
 
   has_many :trailers
   has_many :missions
+  has_many :maintenances
 end

@@ -1,0 +1,16 @@
+AllCops:
+  Include:
+    - '**/Gemfile'
+    - '**/Rakefile'
+  Exclude:
+   - 'bin/*'
+   - 'db/seeds.rb'
+   - 'db/schema.rb'
+   - 'vendor/bundle/**/*'
+   
+# 全面使用double quote
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
