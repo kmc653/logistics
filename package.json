@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/kmc653/logistics#readme",
   "dependencies": {
-    "admin-lte": "2.3.5"
+    "admin-lte": "^2.3.11"
   }
 }

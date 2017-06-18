@@ -20,6 +20,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
 gem "slim-rails"
 gem 'spring', group: :development
+gem "ransack"
+gem "simple_form"
+gem "will_paginate", "~> 3.1.5"
 
 # Deploy
 gem 'capistrano-npm'
