@@ -1,11 +1,10 @@
 # config valid only for current version of Capistrano
 lock "3.8.2"
-server '35.165.17.31', port: 80, roles: [:web, :app, :db], primary: true
 
 set :application, "logistics"
 set :repo_url, "git@github.com:kmc653/logistics.git"
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
+# set :puma_threads,    [4, 16]
+# set :puma_workers,    0
 
 # Default branch is :master
 set :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
