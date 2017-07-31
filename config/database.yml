@@ -22,4 +22,8 @@ test:
 
 production:
   <<: *default
+  host:     localhost
+  encoding: unicode
   database: sevencrowns_production
+  username: logistics
+  password:
