@@ -1,9 +1,4 @@
-# Change to match your CPU core count
-workers 2
-
-# Min and Max threads per worker
-# threads 1, 6
-
+#!/usr/bin/env puma
 
 app_root = '/home/deployer/logistics'
 pidfile "#{app_root}/shared/tmp/pids/puma.pid"
@@ -15,6 +10,9 @@ activate_control_app "unix://#{app_root}/shared/tmp/sockets/pumactl.sock"
 rails_env = ENV['RAILS_ENV'] || "production"
 environment rails_env
 port        ENV.fetch("PORT") { 3000 }
+
+daemonize true
+workers 2
 
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
 threads threads_count, threads_count
