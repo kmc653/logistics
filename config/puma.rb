@@ -1,4 +1,4 @@
-#!/usr/bin/env puma
+!/usr/bin/env puma
 
 app_root = '/home/deployer/logistics'
 pidfile "#{app_root}/shared/tmp/pids/puma.pid"
@@ -11,7 +11,6 @@ rails_env = ENV['RAILS_ENV'] || "production"
 environment rails_env
 port        ENV.fetch("PORT") { 3000 }
 
-daemonize true
 workers 2
 
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i

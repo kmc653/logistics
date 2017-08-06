@@ -15,10 +15,12 @@ set :deploy_to, "/home/deployer/logistics"
 set :user, "deployer"
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/secrets.yml", "config/application.yml", "config/puma.rb"
-
+# append :linked_files, "config/database.yml", "config/secrets.yml", "config/application.yml", "config/puma.rb"
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/puma.rb', 'config/application.yml')
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
+ 
 
 set :rails_env, 'production'
 set :puma_preload_app, true
