@@ -50,6 +50,18 @@ namespace :deploy do
   end
 end
 
+namespace :rails do
+  desc "open rails console on server"
+  task :console do
+    on roles(:app), :primary => true do |host|
+      command = "cd #{fetch(:deploy_to)}/current && bundle exec rails console #{fetch(:rails_env)}"
+      puts command if fetch(:log_level) == :debug
+      exec "ssh -l #{host.user} #{host.hostname} -p #{host.port || 22} -t '#{command}'"
+    end
+  end
+end
+
+
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
 # kill -s SIGTERM pid   # Stop puma
