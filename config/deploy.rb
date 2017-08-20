@@ -33,9 +33,6 @@ set :rails_assets_groups, :assets
 set :puma_conf, "#{deploy_to}/shared/config/puma.rb"
 set :puma_role, :web
 
-set :console_env, :rails_env
-set :console_user, :user
-
 namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
@@ -50,6 +47,30 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'puma:restart'
     end
+  end
+end
+
+namespace :rails do
+  desc "Open the rails console on each of the remote servers"
+  task :console do
+    on roles(:app) do |host| #does it for each host, bad.
+      rails_env = fetch(:stage)
+      execute_interactively "ruby #{current_path}/script/rails console #{rails_env}"  
+    end
+  end
+
+  desc "Open the rails dbconsole on each of the remote servers"
+  task :dbconsole do
+    on roles(:db) do |host| #does it for each host, bad.
+      rails_env = fetch(:stage)
+      execute_interactively "ruby #{current_path}/script/rails dbconsole #{rails_env}"  
+    end
+  end
+
+  def execute_interactively(command)
+    user = fetch(:user)
+    port = fetch(:port) || 22
+    exec "ssh -l #{user} #{host} -p #{port} -t 'cd #{deploy_to}/current && #{command}'"
   end
 end
 
