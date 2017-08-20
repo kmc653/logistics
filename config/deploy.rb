@@ -33,6 +33,9 @@ set :rails_assets_groups, :assets
 set :puma_conf, "#{deploy_to}/shared/config/puma.rb"
 set :puma_role, :web
 
+set :console_env, :rails_env
+set :console_user, :user
+
 namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
