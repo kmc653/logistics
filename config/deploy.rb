@@ -54,7 +54,7 @@ namespace :rails do
   desc "Open the rails console on each of the remote servers"
   task :console do
     on roles(:app) do |host| #does it for each host, bad.
-      rails_env = fetch(:stage)
+      rails_env = fetch(:rails_env)
       execute_interactively "ruby #{current_path}/script/rails console #{rails_env}"  
     end
   end
@@ -62,7 +62,7 @@ namespace :rails do
   desc "Open the rails dbconsole on each of the remote servers"
   task :dbconsole do
     on roles(:db) do |host| #does it for each host, bad.
-      rails_env = fetch(:stage)
+      rails_env = fetch(:rails_env)
       execute_interactively "ruby #{current_path}/script/rails dbconsole #{rails_env}"  
     end
   end
