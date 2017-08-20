@@ -33,6 +33,8 @@ set :rails_assets_groups, :assets
 set :puma_conf, "#{deploy_to}/shared/config/puma.rb"
 set :puma_role, :web
 
+set :console_user, :appuser
+
 namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
@@ -46,17 +48,6 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'puma:restart'
-    end
-  end
-end
-
-namespace :rails do
-  desc "open rails console on server"
-  task :console do
-    on roles(:app), :primary => true do |host|
-      command = "cd #{fetch(:deploy_to)}/current && bundle exec rails console #{fetch(:rails_env)}"
-      puts command if fetch(:log_level) == :debug
-      exec "ssh -l #{host.user} #{host.hostname} -p #{host.port || 22} -t '#{command}'"
     end
   end
 end
