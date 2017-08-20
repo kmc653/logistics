@@ -51,26 +51,13 @@ namespace :deploy do
 end
 
 namespace :rails do
-  desc "Open the rails console on each of the remote servers"
+  desc "open rails console on server"
   task :console do
-    on roles(:app) do |host| #does it for each host, bad.
-      rails_env = fetch(:rails_env)
-      execute_interactively "ruby #{current_path}/script/rails console #{rails_env}"  
+    on roles(:app), :primary => true do |host|
+      command = "cd #{fetch(:deploy_to)}/current && bundle exec rails console #{fetch(:rails_env)}"
+      puts command if fetch(:log_level) == :debug
+      exec "ssh -l #{host.user} #{host.hostname} -p #{host.port || 22} -t '#{command}'"
     end
-  end
-
-  desc "Open the rails dbconsole on each of the remote servers"
-  task :dbconsole do
-    on roles(:db) do |host| #does it for each host, bad.
-      rails_env = fetch(:rails_env)
-      execute_interactively "ruby #{current_path}/script/rails dbconsole #{rails_env}"  
-    end
-  end
-
-  def execute_interactively(command)
-    user = fetch(:user)
-    port = fetch(:port) || 22
-    exec "ssh -l #{user} #{host} -p #{port} -t 'cd #{deploy_to}/current && #{command}'"
   end
 end
 
