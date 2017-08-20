@@ -61,3 +61,4 @@ role :web, %w{deployer@35.165.17.31}
 #   }
 set :branch, 'develop'
 set :console_env, :production
+set :console_user, 'deployer'
