@@ -23,6 +23,7 @@ gem 'spring', group: :development
 gem "ransack"
 gem "simple_form"
 gem "will_paginate", "~> 3.1.5"
+gem "devise"
 
 # Deploy
 gem 'capistrano-npm'

@@ -1,10 +1,10 @@
-a.logo href="index2.html" 
+.logo
   /! mini logo for sidebar mini 50x50 pixels
   span.logo-mini
     b> SC
   /! logo for regular state and mobile devices
   span.logo-lg
-    b> SevenCrowns Admin
+    b> = link_to "SevenCrowns Admin", root_path
 /! Header Navbar
 nav.navbar.navbar-static-top role="navigation" 
   /! Sidebar toggle button
@@ -20,30 +20,33 @@ nav.navbar.navbar-static-top role="navigation"
           /! The user image in the navbar
           / img.user-image alt=("User Image") src="dist/img/user2-160x160.jpg" /
           /! hidden-xs hides the username on small devices so only the image appears.
-          span.hidden-xs Alexander Pierce
+          span.hidden-xs
+            = current_user.name
         ul.dropdown-menu
-          /! The user image in the menu
-          li.user-header
-            / img.img-circle alt=("User Image") src="dist/img/user2-160x160.jpg" /
-            p
-              | Alexander Pierce - Web Developer
-              small Member since Nov. 2012
-          /! Menu Body
-          li.user-body
-            .row
-              .col-xs-4.text-center
-                a href="#"  Followers
-              .col-xs-4.text-center
-                a href="#"  Sales
-              .col-xs-4.text-center
-                a href="#"  Friends
-            /! /.row
+          / /! The user image in the menu
+          / li.user-header
+          /   / img.img-circle alt=("User Image") src="dist/img/user2-160x160.jpg" /
+          /   p
+          /     | Alexander Pierce - Web Developer
+          /     small Member since Nov. 2012
+          / /! Menu Body
+          / li.user-body
+          /   .row
+          /     .col-xs-4.text-center
+          /       a href="#"  Followers
+          /     .col-xs-4.text-center
+          /       a href="#"  Sales
+          /     .col-xs-4.text-center
+          /       a href="#"  Friends
+          /   /! /.row
           /! Menu Footer
-          li.user-footer
-            .pull-left
-              a.btn.btn-default.btn-flat href="#"  Profile
-            .pull-right
-              a.btn.btn-default.btn-flat href="#"  Sign out
+          / li.user-footer
+          /   .pull-right
+          /     a.btn.btn-default.btn-flat href="#"  Profile
+          /   .pull-right
+          /     a.btn.btn-default.btn-flat href="#"  Sign out
+          li
+            = link_to "登出", destroy_user_session_path, method: :delete
       /! Control Sidebar Toggle Button
       li
         a data-toggle="control-sidebar" href="#" 

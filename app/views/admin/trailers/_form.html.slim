@@ -1,17 +1,24 @@
-= form_for @trailer do |f|
-  = f.label :id, "車牌"
-  = f.text_field :trailer_id
-  br
-  = f.label :brand, "廠牌"
-  = f.select :trailer_brand, [["乾佑"], ["新尚餘"]]
-  br
-  = f.label :type, "型式"
-  = f.select :trailer_type, [["平板"], ["子車"]]
-  br
-  = f.label :date_of_buying, "購買日期"
-  = f.date_field :buy_date
-  br
-  = f.label :truck_id, "使用車輛"
-  = f.select :truck_id, options_from_collection_for_select(@trucks, 'id', 'truck_id', @trailer.truck_id), include_blank: " "
-  br
-  = f.submit
+.box.box-primary
+  = form_for [:admin, @trailer] do |f|
+    .box-body
+      .form-group
+        = f.label :id, "車牌"
+        = f.text_field :trailer_id, class:"form-control"
+      .form-group
+        = f.label :brand, "廠牌"
+        = f.select :trailer_brand, [["乾佑"], ["新尚餘"]], {}, class:"form-control"
+      .form-group
+        = f.label :type, "型式"
+        = f.select :trailer_type, [["平板"], ["子車"]], {}, class:"form-control"
+      .form-group
+          = f.label :buy_date, "購買日期"
+          .input-group.date
+            .input-group-addon
+              i.fa.fa-calendar
+            = f.text_field :buy_date, class:"form-control.pull-right", id: "datepicker"
+      .form-group
+        = f.label :truck_id, "使用車輛"
+        = f.select :truck_id, options_from_collection_for_select(@trucks, 'id', 'truck_id', @trailer.truck_id), {include_blank: " "}, class:"form-control"
+    .box-footer
+      button.btn.btn-primary[type="submit"]
+        | Submit
