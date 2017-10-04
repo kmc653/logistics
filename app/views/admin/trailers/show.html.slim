@@ -1,0 +1,15 @@
+.row
+  .col-lg-4
+    h3 板台資料
+    hr
+    dl.dl-horizontal
+      dt 車牌
+      dd = @trailer.trailer_id
+      dt 廠牌
+      dd = @trailer.trailer_brand
+      dt 類型
+      dd = @trailer.trailer_type
+      dt 購買日期
+      dd = @trailer.buy_date
+      dt 使用車輛
+      dd = @truck.truck_id

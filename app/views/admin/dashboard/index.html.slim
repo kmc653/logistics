@@ -1,0 +1,50 @@
+= content_for :content_header do
+  h2 車輛列表
+
+.row
+  .col-md-12
+    .box
+      .box-header
+        h3.box-title 拖車
+      .box-body.table-responsive.no-padding
+        table.table.table-hover
+          thead
+            tr
+              th.col-md-1 #
+              th 車牌
+              th 廠牌
+              th 類型
+              th 購買日期
+              th 板台號碼
+          tbody
+            - @trucks.each_with_index do |truck, index|
+              tr
+                td = index + 1
+                td = link_to "#{truck.truck_id}", admin_truck_path(truck)
+                td = truck.truck_brand
+                td = truck.truck_type
+                td = truck.buy_date
+                td = show_all_trailers(truck.trailers).html_safe
+
+    .box
+      .box-header
+        h3.box-title 板台
+      .box-body.table-responsive.no-padding
+        table.table.table-hover
+          thead
+            tr
+              th.col-md-1 #
+              th 車牌
+              th 廠牌
+              th 類型
+              th 購買日期
+              th 拖車號碼
+          tbody
+            - @trailers.each_with_index do |trailer, index|
+              tr
+                td = index + 1
+                td = link_to "#{trailer.trailer_id}", admin_trailer_path(trailer)
+                td = trailer.trailer_brand
+                td = trailer.trailer_type
+                td = trailer.buy_date
+                td = link_to "#{trailer.truck.truck_id}", admin_truck_path(trailer.truck)

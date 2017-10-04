@@ -6,20 +6,27 @@ gem 'rails', '5.0.2'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
-gem 'pg'
-gem 'bootstrap-sass'
-gem 'pry'
 gem 'bcrypt'
-gem 'puma', '~> 3.0'
-gem 'oj'
-gem 'sidekiq'
+gem 'bootstrap-sass'
+gem 'coffee-rails', '~> 4.2'
 gem 'figaro'
+gem 'jbuilder', '~> 2.0'
+gem 'jquery-rails'
+gem 'oj'
+gem 'pg'
+gem 'pry'
+gem 'puma', '~> 3.0'
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sidekiq'
+gem "slim-rails"
+gem 'spring', group: :development
+gem "ransack"
+gem "simple_form"
+gem "will_paginate", "~> 3.1.5"
+gem "devise"
+
+# Deploy
+gem 'capistrano-npm'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -44,4 +51,5 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
